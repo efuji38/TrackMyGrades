@@ -16,5 +16,5 @@ public interface UserDAO {
 
     @Query("SELECT * FROM " + TrackMyGradesDatabase.USER_TABLE + " WHERE username == :username")
     LiveData<User> getUserByUserName(String username);
-}
 
+}

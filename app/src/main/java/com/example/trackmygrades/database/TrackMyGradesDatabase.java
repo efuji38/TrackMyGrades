@@ -1,7 +1,5 @@
 package com.example.trackmygrades.database;
 
-package com.example.myselftracker.database;
-
 import android.content.Context;
 import android.util.Log;
 
@@ -16,7 +14,7 @@ import com.example.trackmygrades.activities.MainActivity;
 import com.example.trackmygrades.database.entities.Assessment;
 import com.example.trackmygrades.database.entities.Grade;
 import com.example.trackmygrades.database.entities.User;
-import com.example.trackmygrades.database.typeConverters.LocalDateTypeConverter;
+import com.example.trackmygrades.database.typeConverter.LocalDateTypeConverter;
 
 import java.time.LocalDateTime;
 import java.util.concurrent.ExecutorService;
@@ -24,27 +22,27 @@ import java.util.concurrent.Executors;
 
 @TypeConverters(LocalDateTypeConverter.class)
 @Database(entities = {Assessment.class, Grade.class, User.class}, version = 1, exportSchema = false)
-public abstract class GradeTrackerDatabase extends RoomDatabase {
+public abstract class TrackMyGradesDatabase extends RoomDatabase {
 
     private static final String DATABASE_NAME = "GradeTrackerDatabase";
     public static final String USER_TABLE = "userTable";
     public static final String ASSESSMENT_TABLE = "assessmentTable";
     public static final String GRADE_TABLE = "gradeTable";
 
-    private static volatile GradeTrackerDatabase INSTANCE;
+    private static volatile TrackMyGradesDatabase INSTANCE;
     private static final int NUMBER_OF_THREADS = 4;
     static final ExecutorService databaseWriteExecutor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
-    public static GradeTrackerDatabase getDatabase(final Context context){
+    public static TrackMyGradesDatabase getDatabase(final Context context){
         if(INSTANCE == null){
-            synchronized (GradeTrackerDatabase.class){
+            synchronized (TrackMyGradesDatabase.class){
                 if(INSTANCE == null){
                     context.deleteDatabase(DATABASE_NAME); // For testing, deletes the database file
 
                     Log.d(MainActivity.TAG, "Initializing database...");
                     INSTANCE = Room.databaseBuilder(
                                     context.getApplicationContext(),
-                                    GradeTrackerDatabase.class,
+                                    TrackMyGradesDatabase.class,
                                     DATABASE_NAME
                             )
                             .fallbackToDestructiveMigration()

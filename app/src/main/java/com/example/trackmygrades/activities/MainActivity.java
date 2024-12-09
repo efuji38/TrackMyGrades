@@ -1,7 +1,5 @@
 package com.example.trackmygrades.activities;
 
-package com.example.myselftracker.activities;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,7 +10,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
 
-import com.example.trackmygrades.database.GradeTrackerRepository;
+import com.example.trackmygrades.database.TrackMyGradesRepository;
 import com.example.trackmygrades.database.entities.User;
 import com.example.trackmygrades.databinding.ActivityMainBinding;
 
@@ -21,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static final String TAG = "GT_LOG";
     private ActivityMainBinding binding;
-    private GradeTrackerRepository repository;
+    private TrackMyGradesRepository repository;
 
     private boolean isTeacher;
 
@@ -31,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        repository = GradeTrackerRepository.getRepository(getApplication());
+        repository = TrackMyGradesRepository.getRepository(getApplication());
 
         binding.buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -12,31 +12,32 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
-public class GradeTrackerRepository {
+public class TrackMyGradesRepository {
 
     private final UserDAO userDAO;
     private final AssessmentDAO assessmentDAO;
     private final GradeDAO gradeDAO;
 
-    private static GradeTrackerRepository repository;
+    private static TrackMyGradesRepository repository;
 
-    public GradeTrackerRepository(Application application) {
-        GradeTrackerDatabase db = GradeTrackerDatabase.getDatabase(application);
+    public TrackMyGradesRepository(Application application) {
+        TrackMyGradesDatabase db = TrackMyGradesDatabase.getDatabase(application);
         this.assessmentDAO = db.assessmentDAO();
         this.userDAO = db.userDAO();
         this.gradeDAO = db.gradeDAO();
     }
 
 
-    public static GradeTrackerRepository getRepository(Application application) {
-        if (repository != null) {
+    public static TrackMyGradesRepository getRepository(Application application){
+        if(repository != null){
             return repository;
         }
-        Future<GradeTrackerRepository> future = GradeTrackerDatabase.databaseWriteExecutor.submit(
-                new Callable<GradeTrackerRepository>() {
+
+        Future<TrackMyGradesRepository> future = TrackMyGradesDatabase.databaseWriteExecutor.submit(
+                new Callable<TrackMyGradesRepository>() {
                     @Override
-                    public GradeTrackerRepository call() throws Exception {
-                        return new GradeTrackerRepository(application);
+                    public TrackMyGradesRepository call() throws Exception {
+                        return new TrackMyGradesRepository(application);
                     }
                 }
         );
@@ -47,8 +48,10 @@ public class GradeTrackerRepository {
         }
         return null;
     }
-
     public LiveData<User> getUserByUserName(String username) {
         return userDAO.getUserByUserName(username);
     }
+
+
+
 }
