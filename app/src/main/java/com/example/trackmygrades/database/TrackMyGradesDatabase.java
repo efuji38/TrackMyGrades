@@ -24,7 +24,7 @@ import java.util.concurrent.Executors;
 @Database(entities = {Assessment.class, Grade.class, User.class}, version = 1, exportSchema = false)
 public abstract class TrackMyGradesDatabase extends RoomDatabase {
 
-    private static final String DATABASE_NAME = "GradeTrackerDatabase";
+    private static final String DATABASE_NAME = "TrackMyGradesDatabase";
     public static final String USER_TABLE = "userTable";
     public static final String ASSESSMENT_TABLE = "assessmentTable";
     public static final String GRADE_TABLE = "gradeTable";

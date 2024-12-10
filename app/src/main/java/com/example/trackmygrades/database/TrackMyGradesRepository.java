@@ -44,7 +44,7 @@ public class TrackMyGradesRepository {
         try {
             return future.get();
         } catch (InterruptedException | ExecutionException e) {
-            Log.d(MainActivity.TAG, "Problem getting GymLogRepository, thread error");
+            Log.d(MainActivity.TAG, "Problem getting repository, thread error");
         }
         return null;
     }
