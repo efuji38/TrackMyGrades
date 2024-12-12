@@ -38,10 +38,17 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        binding.buttonLogin.setOnClickListener(new View.OnClickListener() {
+        binding.loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 verifyUser();
+            }
+        });
+        binding.registerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, StudentRegistrationActivity.class);
+                startActivity(intent);
             }
         });
     }

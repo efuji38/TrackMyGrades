@@ -41,14 +41,26 @@
         app:layout_constraintTop_toBottomOf="@id/editTextUsername" />
 
     <Button
-        android:id="@+id/buttonLogin"
-        android:layout_width="wrap_content"
+        android:id="@+id/loginButton"
+        android:layout_width="180dp"
         android:layout_height="wrap_content"
-        android:text="Button"
+        android:text="Login"
         android:layout_marginTop="50dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/editTextPassword"
+        tools:layout_editor_absoluteX="158dp"
+        tools:layout_editor_absoluteY="361dp" />
+
+    <Button
+        android:id="@+id/registerButton"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:text="Student Register"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/loginButton"
         tools:layout_editor_absoluteX="158dp"
         tools:layout_editor_absoluteY="361dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

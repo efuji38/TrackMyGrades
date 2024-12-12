@@ -79,6 +79,17 @@ public abstract class TrackMyGradesDatabase extends RoomDatabase {
         }
     };
 
+    public static synchronized TrackMyGradesDatabase getInstance(Context context) {
+        if (INSTANCE == null) {
+            INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
+                            TrackMyGradesDatabase.class, "grade_tracker_database")
+                    .fallbackToDestructiveMigration()  // Automatically handle migrations
+                    .build();
+        }
+        return INSTANCE;
+    }
+
+
     public abstract UserDAO userDAO();
     public abstract AssessmentDAO assessmentDAO();
     public abstract GradeDAO gradeDAO();
