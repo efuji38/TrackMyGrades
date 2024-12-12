@@ -4,12 +4,17 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
 
+import com.example.trackmygrades.R;
 import com.example.trackmygrades.database.TrackMyGradesRepository;
 import com.example.trackmygrades.database.entities.User;
 import com.example.trackmygrades.databinding.ActivityMainBinding;
@@ -31,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
 
         repository = TrackMyGradesRepository.getRepository(getApplication());
 
+
+
         binding.buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -38,6 +45,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+
+
+
+
 
     private void verifyUser(){
         String username = binding.editTextUsername.getText().toString();

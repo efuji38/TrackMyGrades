@@ -24,12 +24,11 @@ public class User {
     private String password;
     private boolean isTeacher;
 
-    public User(String username, String email, boolean isTeacher, String password, int userId) {
+    public User(String username, String password, String email, boolean isTeacher) {
         this.username = username;
+        this.password = password;
         this.email = email;
         this.isTeacher = isTeacher;
-        this.password = password;
-        this.userId = userId;
     }
 
     @Override

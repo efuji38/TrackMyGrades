@@ -53,5 +53,7 @@ public class TrackMyGradesRepository {
     }
 
 
-
+    public LiveData<User> getUserByUserId(int userId) {
+        return userDAO.getUserByUserId(userId);
+    }
 }

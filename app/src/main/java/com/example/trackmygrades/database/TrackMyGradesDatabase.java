@@ -64,16 +64,16 @@ public abstract class TrackMyGradesDatabase extends RoomDatabase {
             databaseWriteExecutor.execute(() -> {
                 UserDAO userDao = INSTANCE.userDAO();
                 userDao.deleteALL();
-                userDao.insert(new User( "teacher1", "teacher1@gmail.com", true, "teacher1", 1));
-                userDao.insert(new User( "student1", "student1@gmail.com", false, "student1", 2));
+                userDao.insert(new User( "teacher1", "teacher1", "teacher1@gmail.com", true));
+                userDao.insert(new User( "student1", "teacher1", "teacher1@gmail.com", false));
 
                 AssessmentDAO assessmentDao = INSTANCE.assessmentDAO();
                 assessmentDao.deleteALL();
-                assessmentDao.insert(new Assessment(1, LocalDateTime.of(2024, 10, 10, 0, 0, 0), 1, "Math Quiz"));
+                assessmentDao.insert(new Assessment( "Math Quiz", LocalDateTime.of(2024, 10, 10, 0, 0, 0), 1));
 
                 GradeDAO gradeDao = INSTANCE.gradeDAO();
                 gradeDao.deleteALL();
-                gradeDao.insert(new Grade(1, "well done!", 4.0,1, 2));
+                gradeDao.insert(new Grade(1, 4.0, "well done!",1 ));
 
             });
         }

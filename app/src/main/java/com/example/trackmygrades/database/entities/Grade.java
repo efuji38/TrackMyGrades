@@ -12,11 +12,10 @@ public class Grade {
     private double grade;
     private String comment;
 
-    public Grade(int assignmentId, String comment, double grade, int gradeId, int studentId) {
+    public Grade(int assignmentId, double grade, String comment,  int studentId) {
         this.assignmentId = assignmentId;
-        this.comment = comment;
         this.grade = grade;
-        this.gradeId = gradeId;
+        this.comment = comment;
         this.studentId = studentId;
     }
 

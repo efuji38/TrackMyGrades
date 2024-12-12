@@ -14,11 +14,10 @@ public class Assessment {
     private LocalDateTime dueDate;
     private int teacherId;
 
-    public Assessment(int assignmentId, LocalDateTime dueDate, int teacherId, String title) {
-        this.assignmentId = assignmentId;
+    public Assessment(String title, LocalDateTime dueDate, int teacherId) {
+        this.title = title;
         this.dueDate = dueDate;
         this.teacherId = teacherId;
-        this.title = title;
     }
 
     @Override
