@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">TrackMyGrades</string>
     <string name="preference_file_key">PreferenceFileName\n</string>
-    <string name="preference_userId_key">gymLogPreferenceUserIdKey</string>
+    <string name="preference_userId_key">trackMyGradePreferenceUserIdKey</string>
 </resources>

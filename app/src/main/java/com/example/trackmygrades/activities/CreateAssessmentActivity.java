@@ -1,59 +1,117 @@
 package com.example.trackmygrades.activities;
 
-
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
 
-
 import com.example.trackmygrades.R;
+import com.example.trackmygrades.database.TrackMyGradesDatabase;
 import com.example.trackmygrades.database.TrackMyGradesRepository;
+import com.example.trackmygrades.database.entities.Assessment;
 import com.example.trackmygrades.database.entities.User;
 import com.example.trackmygrades.databinding.ActivityCreateAssessmentBinding;
-import com.example.trackmygrades.databinding.ActivityTeacherDashboardBinding;
 
-public class TeacherDashboardActivity extends AppCompatActivity {
+import java.time.LocalDateTime;
+import java.util.Calendar;
 
-    ActivityTeacherDashboardBinding binding;
+public class CreateAssessmentActivity extends AppCompatActivity {
+    ActivityCreateAssessmentBinding binding;
+
     private static final String MAIN_ACTIVITY_USER_ID = "com.example.trackmygrades.activities.MAIN_ACTIVITY_USER_ID";
     static final String SAVED_INSTANCE_STATE_USERID_KEY = "com.example.trackmygrades.SAVED_INSTANCE_STATE_USERID_KEY";
-    private User user;
+    private TextView dueDateTextView;
+    private Button saveButton;
+
+    private int year, month, dayOfMonth;
     int loggedInUserId = -1;
     private static final int LOGGED_OUT = -1;
-
     private TrackMyGradesRepository repository;
+    private User user;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityTeacherDashboardBinding.inflate(getLayoutInflater());
+        binding = ActivityCreateAssessmentBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         repository = TrackMyGradesRepository.getRepository(getApplication());
         loginUser(savedInstanceState);
 
-        binding.createAssignmentQuizButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(TeacherDashboardActivity.this, CreateAssessmentActivity.class);
-                startActivity(intent);
-            }
-        });
+        dueDateTextView = binding.dueDateTextView; // Ensure this line exists
+        dueDateTextView.setOnClickListener(v -> showDatePickerDialog());
+
+        saveButton = binding.saveButton;
+        saveButton.setOnClickListener(v -> saveAssessment());
+    }
+
+    private void saveAssessment() {
+        String assessmentTitle = binding.assessmentTitle.getText().toString().trim();
+
+        if (assessmentTitle.isEmpty() || binding.dueDateTextView.getText().toString().trim().isEmpty()) {
+            Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        String dueDateString = binding.dueDateTextView.getText().toString().trim();
+
+        try {
+            String[] dateParts = dueDateString.split("-");
+            String formattedDate = String.format("%04d-%02d-%02d",
+                    Integer.parseInt(dateParts[0]),  // Year
+                    Integer.parseInt(dateParts[1]),  // Month
+                    Integer.parseInt(dateParts[2])); // Day
+
+            LocalDateTime dueDateTime = LocalDateTime.parse(formattedDate + "T00:00:00");
+
+            Assessment newAssessment = new Assessment(assessmentTitle, dueDateTime, loggedInUserId);
+
+            TrackMyGradesDatabase database = TrackMyGradesDatabase.getDatabase(this);
+
+            new Thread(() -> {
+                database.assessmentDAO().insert(newAssessment);
+
+                runOnUiThread(() -> {
+                    Toast.makeText(CreateAssessmentActivity.this, "Assessment saved successfully!", Toast.LENGTH_SHORT).show();
+                    finish(); // Close the activity
+                });
+            }).start();
+        } catch (Exception e) {
+            Log.e(MainActivity.TAG, "Error Message: ", e);
+            Toast.makeText(CreateAssessmentActivity.this, "Failed to save assessment. Please try again.", Toast.LENGTH_SHORT).show();
+        }
+    }
 
 
+    private void showDatePickerDialog() {
+        final Calendar calendar = Calendar.getInstance();
+        year = calendar.get(Calendar.YEAR);
+        month = calendar.get(Calendar.MONTH);
+        dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
+
+        DatePickerDialog datePickerDialog = new DatePickerDialog(
+                CreateAssessmentActivity.this,
+                 (view, selectedYear, selectedMonth, selectedDayOfMonth) -> {
+                    String dueDate = selectedYear + "-" + (selectedMonth + 1) + "-" + selectedDayOfMonth;
+                    binding.dueDateTextView.setText(dueDate);
+                    },
+                year, month, dayOfMonth
+            );
+            datePickerDialog.show();
     }
 
     private void loginUser(Bundle savedInstanceState){
@@ -65,7 +123,7 @@ public class TeacherDashboardActivity extends AppCompatActivity {
             loggedInUserId = savedInstanceState.getInt(SAVED_INSTANCE_STATE_USERID_KEY, LOGGED_OUT);
         }
         if(loggedInUserId == LOGGED_OUT){
-            loggedInUserId = getIntent().getIntExtra(MAIN_ACTIVITY_USER_ID, LOGGED_OUT);
+            loggedInUserId = getIntent().getIntExtra(ACTIVITY_SERVICE, LOGGED_OUT);
         }
         if(loggedInUserId == LOGGED_OUT){
             return;
@@ -115,7 +173,7 @@ public class TeacherDashboardActivity extends AppCompatActivity {
 
 
     private void showLogoutDialog(){
-        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(TeacherDashboardActivity.this);
+        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(CreateAssessmentActivity.this);
         final AlertDialog alertDialog = alertBuilder.create();
 
         alertBuilder.setMessage("Logout?");
@@ -157,9 +215,4 @@ public class TeacherDashboardActivity extends AppCompatActivity {
     }
 
 
-    static Intent teacherDashboardIntentFactory(Context context, int userId){
-        Intent intent = new Intent(context, TeacherDashboardActivity.class);
-        intent.putExtra(MAIN_ACTIVITY_USER_ID, userId);
-        return intent;
-    }
 }

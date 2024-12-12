@@ -9,7 +9,7 @@ import com.example.trackmygrades.database.entities.Assessment;
 public interface AssessmentDAO {
 
     @Insert
-    void insert(Assessment... assessment);
+    void insert(Assessment assessment);
     @Query("DELETE FROM " + TrackMyGradesDatabase.ASSESSMENT_TABLE)
     void deleteALL();
 }

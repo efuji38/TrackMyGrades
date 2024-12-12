@@ -8,7 +8,7 @@ import com.example.trackmygrades.database.entities.Grade;
 @Dao
 public interface GradeDAO {
     @Insert
-    void insert(Grade... grade);
+    void insert(Grade grade);
     @Query("DELETE FROM " + TrackMyGradesDatabase.GRADE_TABLE)
     void deleteALL();
 }

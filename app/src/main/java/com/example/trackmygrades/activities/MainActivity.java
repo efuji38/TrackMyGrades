@@ -2,15 +2,11 @@ package com.example.trackmygrades.activities;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
 
@@ -47,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         binding.registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, StudentRegistrationActivity.class);
+                Intent intent = new Intent(MainActivity.this, RegistrationActivity.class);
                 startActivity(intent);
             }
         });
@@ -67,10 +63,17 @@ public class MainActivity extends AppCompatActivity {
 
         LiveData<User> userObserver = repository.getUserByUserName(username);
         userObserver.observe(this, user -> {
-            if(user != null){
+            if (user != null) {
                 String password = binding.editTextPassword.getText().toString();
-                if(password.equals(user.getPassword())){
-                    if(user.isTeacher()) {
+                if (password.equals(user.getPassword())) {
+                    // Store user ID in SharedPreferences or pass through Intent
+                    SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putInt(getString(R.string.preference_userId_key), user.getUserId());
+                    editor.apply();
+
+                    // Redirect to respective dashboard based on user role
+                    if (user.isTeacher()) {
                         startActivity(TeacherDashboardActivity.teacherDashboardIntentFactory(getApplicationContext(), user.getUserId()));
                     } else {
                         startActivity(StudentDashboardActivity.studentDashboardIntentFactory(getApplicationContext(), user.getUserId()));
@@ -84,6 +87,24 @@ public class MainActivity extends AppCompatActivity {
                 binding.editTextUsername.setSelection(0);
             }
         });
+//        userObserver.observe(this, user -> {
+//            if(user != null){
+//                String password = binding.editTextPassword.getText().toString();
+//                if(password.equals(user.getPassword())){
+//                    if(user.isTeacher()) {
+//                        startActivity(TeacherDashboardActivity.teacherDashboardIntentFactory(getApplicationContext(), user.getUserId()));
+//                    } else {
+//                        startActivity(StudentDashboardActivity.studentDashboardIntentFactory(getApplicationContext(), user.getUserId()));
+//                    }
+//                } else {
+//                    toastMaker("Invalid password");
+//                    binding.editTextPassword.setSelection(0);
+//                }
+//            } else {
+//                toastMaker(String.format("%s is not a valid username.", username));
+//                binding.editTextUsername.setSelection(0);
+//            }
+//        });
     }
 
     private void toastMaker(String message) {

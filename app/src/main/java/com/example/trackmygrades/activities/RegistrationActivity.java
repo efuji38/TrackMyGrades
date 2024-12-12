@@ -1,26 +1,23 @@
 package com.example.trackmygrades.activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.example.trackmygrades.R;
 import com.example.trackmygrades.database.TrackMyGradesDatabase;
 import com.example.trackmygrades.database.UserDAO;
 import com.example.trackmygrades.database.entities.User;
-import com.example.trackmygrades.databinding.ActivityStudentRegistrationBinding;
+import com.example.trackmygrades.databinding.ActivityRegistrationBinding;
 
-public class StudentRegistrationActivity extends AppCompatActivity {
+public class RegistrationActivity extends AppCompatActivity {
 
-    private ActivityStudentRegistrationBinding binding;
+    private ActivityRegistrationBinding binding;
     private TrackMyGradesDatabase db;
     private User user;
 
@@ -30,7 +27,7 @@ public class StudentRegistrationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        binding = ActivityStudentRegistrationBinding.inflate(getLayoutInflater());
+        binding = ActivityRegistrationBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         db = TrackMyGradesDatabase.getInstance(getApplicationContext());
@@ -41,6 +38,8 @@ public class StudentRegistrationActivity extends AppCompatActivity {
             String confirmPassword = binding.editTextConfirmPassword.getText().toString();
             String email = binding.editTextEmail.getText().toString();
             String accessCode = binding.editTextAccessCode.getText().toString();
+            int selectedRoleId = binding.radioGroupRole.getCheckedRadioButtonId();
+            boolean isTeacher = selectedRoleId == R.id.radioButtonTeacher;
 
             if (TextUtils.isEmpty(username) || TextUtils.isEmpty(password) || TextUtils.isEmpty(confirmPassword) || TextUtils.isEmpty(accessCode)) {
                 Toast.makeText(this, "Please fill in all fields.", Toast.LENGTH_SHORT).show();
@@ -57,7 +56,7 @@ public class StudentRegistrationActivity extends AppCompatActivity {
                 return;
             }
 
-            User newUser = new User(username, password, email, false);
+            User newUser = new User(username, password, email, isTeacher);
             Log.d("Activity", "Calling saveUserToDatabase method");
             saveUserToDatabase(newUser);
 
@@ -77,7 +76,12 @@ public class StudentRegistrationActivity extends AppCompatActivity {
                     UserDAO userDao = db.userDAO();
                     userDao.insert(user);
 
-                    Log.d(MainActivity.TAG, "User inserted: " + user.getUsername());
+//                    long userId = user.getUserId();
+//
+//                    SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE);
+//                    SharedPreferences.Editor editor = sharedPreferences.edit();
+//                    editor.putLong("userId", userId);  // Store the userId
+//                    editor.apply();
 
                 } catch (Exception e) {
                     Log.e(MainActivity.TAG, "Error inserting user", e);

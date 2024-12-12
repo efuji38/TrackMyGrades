@@ -10,7 +10,7 @@ import com.example.trackmygrades.database.entities.User;
 @Dao
 public interface UserDAO {
     @Insert
-    void insert(User... user);
+    void insert(User user);
     @Query("DELETE FROM " + TrackMyGradesDatabase.USER_TABLE)
     void deleteALL();
 
