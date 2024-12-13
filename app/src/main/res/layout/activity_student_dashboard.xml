@@ -30,40 +30,5 @@
         tools:layout_editor_absoluteX="161dp"
         tools:layout_editor_absoluteY="222dp" />
 
-    <Button
-        android:id="@+id/trackAssignmentButton"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/viewGradeButton"
-        android:layout_marginTop="10dp"
-        android:text="Track Assignemnt"
-        tools:layout_editor_absoluteX="161dp"
-        tools:layout_editor_absoluteY="222dp" />
-
-    <Button
-        android:id="@+id/studentLogoutButton"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/trackAssignmentButton"
-        android:layout_marginTop="10dp"
-        android:text="Logout"
-        tools:layout_editor_absoluteX="161dp"
-        tools:layout_editor_absoluteY="222dp" />
-
-    <!--    <Button-->
-    <!--        android:id="@+id/viewGradeButton"-->
-    <!--        android:layout_width="200dp"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintTop_toBottomOf="@id/greetingStudentTextView"-->
-    <!--        android:layout_marginTop="30dp"-->
-    <!--        android:text="Button"-->
-    <!--        tools:layout_editor_absoluteX="161dp"-->
-    <!--        tools:layout_editor_absoluteY="222dp" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

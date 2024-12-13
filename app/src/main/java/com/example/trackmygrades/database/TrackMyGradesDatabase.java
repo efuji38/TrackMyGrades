@@ -65,7 +65,7 @@ public abstract class TrackMyGradesDatabase extends RoomDatabase {
                 UserDAO userDao = INSTANCE.userDAO();
                 userDao.deleteALL();
                 userDao.insert(new User( "teacher1", "teacher1", "teacher1@gmail.com", true));
-                userDao.insert(new User( "student1", "teacher1", "teacher1@gmail.com", false));
+                userDao.insert(new User( "student1", "student1", "student1@gmail.com", false));
 
                 AssessmentDAO assessmentDao = INSTANCE.assessmentDAO();
                 assessmentDao.deleteALL();
