@@ -1,5 +1,6 @@
 package com.example.trackmygrades.database.entities;
 
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -12,6 +13,7 @@ public class Assessment {
     private int assignmentId;
     private String title;
     private LocalDateTime dueDate;
+    @ColumnInfo(name = "teacherId")
     private int teacherId;
 
     public Assessment(String title, LocalDateTime dueDate, int teacherId) {

@@ -6,8 +6,10 @@ import android.util.Log;
 import androidx.lifecycle.LiveData;
 
 import com.example.trackmygrades.activities.MainActivity;
+import com.example.trackmygrades.database.entities.Assessment;
 import com.example.trackmygrades.database.entities.User;
 
+import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
@@ -55,5 +57,9 @@ public class TrackMyGradesRepository {
 
     public LiveData<User> getUserByUserId(int userId) {
         return userDAO.getUserByUserId(userId);
+    }
+
+    public LiveData<List<Assessment>> getAllAssessments(int userId) {
+        return assessmentDAO.getRecordsByUserIdLiveData(userId);
     }
 }

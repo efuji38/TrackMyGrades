@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -64,6 +65,14 @@ public class RegistrationActivity extends AppCompatActivity {
             Toast.makeText(this, "Registration successful! Please log in.", Toast.LENGTH_SHORT).show();
             startActivity(intent);
             finish();
+        });
+
+        binding.buttonBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(RegistrationActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
         });
     }
     private void saveUserToDatabase(User user) {
