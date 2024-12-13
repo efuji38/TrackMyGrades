@@ -7,6 +7,7 @@ import androidx.lifecycle.LiveData;
 
 import com.example.trackmygrades.activities.MainActivity;
 import com.example.trackmygrades.database.entities.Assessment;
+import com.example.trackmygrades.database.entities.Grade;
 import com.example.trackmygrades.database.entities.User;
 
 import java.util.List;
@@ -62,4 +63,10 @@ public class TrackMyGradesRepository {
     public LiveData<List<Assessment>> getAllAssessments(int userId) {
         return assessmentDAO.getRecordsByUserIdLiveData(userId);
     }
+
+    public LiveData<List<GradeWithAssessment>> getAllGradesWithAssessments(int userId) {
+        // Assuming your DAO has this method
+        return gradeDAO.getGradesWithAssessmentTitles(userId);  // Query for grades and their associated assessment titles
+    }
+
 }
