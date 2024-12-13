@@ -71,7 +71,7 @@ public class ViewAssessmentActivity extends AppCompatActivity {
             adapter.submitList(assessment);
         });
 
-        binding.backToDashboardButton.setOnClickListener(new View.OnClickListener() {
+        binding.backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ViewAssessmentActivity.this, TeacherDashboardActivity.class);

@@ -8,6 +8,7 @@ import androidx.room.Query;
 import com.example.trackmygrades.database.entities.Assessment;
 import com.example.trackmygrades.database.entities.User;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Dao
@@ -23,4 +24,6 @@ public interface UserDAO {
     @Query("SELECT * FROM " + TrackMyGradesDatabase.USER_TABLE + " WHERE userId == :userId")
     LiveData<User> getUserByUserId(int userId);
 
+    @Query("SELECT * FROM " + TrackMyGradesDatabase.USER_TABLE + " WHERE isTeacher = 0")
+    List<User> getAllStudents();
 }

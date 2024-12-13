@@ -19,6 +19,9 @@ public interface AssessmentDAO {
 
     @Query("SELECT * FROM " + TrackMyGradesDatabase.ASSESSMENT_TABLE + " WHERE teacherId = :loggedInUserId")
     LiveData<List<Assessment>> getRecordsByUserIdLiveData(int loggedInUserId);
+
+    @Query("SELECT * FROM " + TrackMyGradesDatabase.ASSESSMENT_TABLE)
+    List<Assessment> getAllAssessments();
     @Query("SELECT * FROM " + TrackMyGradesDatabase.ASSESSMENT_TABLE + " WHERE teacherId = :teacherId")
     LiveData<List<Assessment>> getAssessmentByTeacherId(int teacherId);
 

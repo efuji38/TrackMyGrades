@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
                     binding.editTextPassword.setSelection(0);
                 }
             } else {
-                toastMaker(String.format("%s is not a valid username.", username));
+//                toastMaker(String.format("%s is not a valid username.", username));
                 binding.editTextUsername.setSelection(0);
             }
         });

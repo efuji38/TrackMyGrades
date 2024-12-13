@@ -43,6 +43,18 @@
         tools:layout_editor_absoluteX="161dp"
         tools:layout_editor_absoluteY="222dp" />
 
+    <Button
+        android:id="@+id/assignGradesButton"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/viewAssessmentButton"
+        android:layout_marginTop="10dp"
+        android:text="Assign Grades"
+        tools:layout_editor_absoluteX="161dp"
+        tools:layout_editor_absoluteY="222dp" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,7 +10,7 @@ import java.util.Objects;
 @Entity(tableName = "assessmentTable")
 public class Assessment {
     @PrimaryKey(autoGenerate = true)
-    private int assignmentId;
+    private int assessmentId;
     private String title;
     private LocalDateTime dueDate;
     @ColumnInfo(name = "teacherId")
@@ -27,20 +27,21 @@ public class Assessment {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Assessment that = (Assessment) o;
-        return assignmentId == that.assignmentId && teacherId == that.teacherId && Objects.equals(title, that.title) && Objects.equals(dueDate, that.dueDate);
+        return assessmentId == that.assessmentId && teacherId == that.teacherId && Objects.equals(title, that.title) && Objects.equals(dueDate, that.dueDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(assignmentId, title, dueDate, teacherId);
+        return Objects.hash(assessmentId, title, dueDate, teacherId);
     }
 
-    public int getAssignmentId() {
-        return assignmentId;
+    public int getAssessmentId() {
+        return assessmentId;
     }
 
-    public void setAssignmentId(int assignmentId) {
-        this.assignmentId = assignmentId;
+
+    public void setAssessmentId(int assessmentId) {
+        this.assessmentId = assessmentId;
     }
 
     public LocalDateTime getDueDate() {
@@ -65,5 +66,10 @@ public class Assessment {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    @Override
+    public String toString() {
+        return title; // This will display the assessment name in the spinner
     }
 }

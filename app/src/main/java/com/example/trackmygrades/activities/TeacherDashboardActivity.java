@@ -61,6 +61,15 @@ public class TeacherDashboardActivity extends AppCompatActivity {
             }
         });
 
+        binding.assignGradesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TeacherDashboardActivity.this, AssignGradesActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
 
     }
 
