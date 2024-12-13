@@ -65,8 +65,7 @@ public class TrackMyGradesRepository {
     }
 
     public LiveData<List<GradeWithAssessment>> getAllGradesWithAssessments(int userId) {
-        // Assuming your DAO has this method
-        return gradeDAO.getGradesWithAssessmentTitles(userId);  // Query for grades and their associated assessment titles
+        return gradeDAO.getGradesWithAssessmentTitles(userId);
     }
 
 }

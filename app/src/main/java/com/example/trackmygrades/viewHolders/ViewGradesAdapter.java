@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 
 import com.example.trackmygrades.database.GradeWithAssessment;
-import com.example.trackmygrades.database.entities.Assessment;
 import com.example.trackmygrades.database.entities.Grade;
 
 public class ViewGradesAdapter extends ListAdapter<GradeWithAssessment, ViewGradesViewHolder> {
@@ -23,19 +22,19 @@ public class ViewGradesAdapter extends ListAdapter<GradeWithAssessment, ViewGrad
 
     @Override
     public void onBindViewHolder(@NonNull ViewGradesViewHolder holder, int position) {
-        GradeWithAssessment current = getItem(position);  // Get the current Assessment item
+        GradeWithAssessment current = getItem(position);
         holder.bind(current);
     }
 
     public static class GradeDiffCallback extends DiffUtil.ItemCallback<Grade> {
         @Override
         public boolean areItemsTheSame(@NonNull Grade oldItem, @NonNull Grade newItem) {
-            return oldItem == newItem;  // Compare based on assessmentId
+            return oldItem == newItem;
         }
 
         @Override
         public boolean areContentsTheSame(@NonNull Grade oldItem, @NonNull Grade newItem) {
-            return oldItem.equals(newItem);  // Check for equality based on content
+            return oldItem.equals(newItem);
         }
     }
 }

@@ -24,7 +24,4 @@ public class ViewAssessmentViewModel extends AndroidViewModel {
         return repository.getAllAssessments(userId);
     }
 
-//    public void insertAssessment(Assessment assessment) {
-//        repository.insertAssessment(assessment);
-//    }
 }

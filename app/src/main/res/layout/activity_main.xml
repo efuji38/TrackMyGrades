@@ -1,54 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/loginTitleTexView"
         android:layout_width="390dp"
         android:layout_height="50dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         android:gravity="center"
+        android:text="@string/login"
         android:textSize="40sp"
-        android:text="Login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="177dp"
-        tools:layout_editor_absoluteY="109dp"
-        tools:ignore="MissingConstraints" />
+        tools:layout_editor_absoluteY="109dp" />
 
     <EditText
         android:id="@+id/editTextUsername"
         android:layout_width="250dp"
         android:layout_height="50dp"
-        android:hint="Username"
-        android:gravity="center"
         android:layout_marginTop="30dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:gravity="center"
+        android:hint="@string/username"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/loginTitleTexView" />
 
     <EditText
         android:id="@+id/editTextPassword"
         android:layout_width="250dp"
         android:layout_height="50dp"
-        android:hint="Password"
-        android:inputType="textPassword"
-        android:gravity="center"
         android:layout_marginTop="30dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:gravity="center"
+        android:hint="@string/password"
+        android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/editTextUsername" />
 
     <Button
         android:id="@+id/loginButton"
         android:layout_width="180dp"
         android:layout_height="wrap_content"
-        android:text="Login"
         android:layout_marginTop="50dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:text="Login"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/editTextPassword"
         tools:layout_editor_absoluteX="158dp"
         tools:layout_editor_absoluteY="361dp" />
@@ -57,10 +57,10 @@
         android:id="@+id/registerButton"
         android:layout_width="180dp"
         android:layout_height="wrap_content"
-        android:text="New User"
         android:layout_marginTop="10dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:text="@string/new_user"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/loginButton"
         tools:layout_editor_absoluteX="158dp"
         tools:layout_editor_absoluteY="361dp" />

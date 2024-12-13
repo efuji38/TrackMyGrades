@@ -22,7 +22,7 @@ public class RegistrationActivity extends AppCompatActivity {
     private TrackMyGradesDatabase db;
     private User user;
 
-    private static final String HARD_CODED_ACCESS_CODE = "cst338"; // Replace with your hardcoded access code.
+    private static final String HARD_CODED_ACCESS_CODE = "cst338";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,13 +84,6 @@ public class RegistrationActivity extends AppCompatActivity {
 
                     UserDAO userDao = db.userDAO();
                     userDao.insert(user);
-
-//                    long userId = user.getUserId();
-//
-//                    SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE);
-//                    SharedPreferences.Editor editor = sharedPreferences.edit();
-//                    editor.putLong("userId", userId);  // Store the userId
-//                    editor.apply();
 
                 } catch (Exception e) {
                     Log.e(MainActivity.TAG, "Error inserting user", e);

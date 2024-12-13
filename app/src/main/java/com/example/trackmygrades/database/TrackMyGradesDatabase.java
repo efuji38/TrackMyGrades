@@ -37,7 +37,7 @@ public abstract class TrackMyGradesDatabase extends RoomDatabase {
         if(INSTANCE == null){
             synchronized (TrackMyGradesDatabase.class){
                 if(INSTANCE == null){
-                    context.deleteDatabase(DATABASE_NAME); // For testing, deletes the database file
+                    context.deleteDatabase(DATABASE_NAME);
 
                     Log.d(MainActivity.TAG, "Initializing database...");
                     INSTANCE = Room.databaseBuilder(
@@ -83,7 +83,7 @@ public abstract class TrackMyGradesDatabase extends RoomDatabase {
         if (INSTANCE == null) {
             INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                             TrackMyGradesDatabase.class, "grade_tracker_database")
-                    .fallbackToDestructiveMigration()  // Automatically handle migrations
+                    .fallbackToDestructiveMigration()
                     .build();
         }
         return INSTANCE;

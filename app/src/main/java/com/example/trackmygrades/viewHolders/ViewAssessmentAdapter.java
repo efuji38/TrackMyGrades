@@ -11,8 +11,6 @@ import androidx.recyclerview.widget.ListAdapter;
 import com.example.trackmygrades.database.entities.Assessment;
 
 public class ViewAssessmentAdapter extends ListAdapter<Assessment, ViewAssessmentViewHolder> {
-
-    // Constructor to pass the DiffUtil callback
     public ViewAssessmentAdapter(@NonNull DiffUtil.ItemCallback<Assessment> diffCallback) {
         super(diffCallback);
     }
@@ -25,20 +23,19 @@ public class ViewAssessmentAdapter extends ListAdapter<Assessment, ViewAssessmen
 
     @Override
     public void onBindViewHolder(@NonNull ViewAssessmentViewHolder holder, int position) {
-        Assessment current = getItem(position);  // Get the current Assessment item
+        Assessment current = getItem(position);
         holder.bind(current);
     }
 
-    // Define the DiffUtil callback to compare assessments
     public static class AssessmentDiffCallback extends DiffUtil.ItemCallback<Assessment> {
         @Override
         public boolean areItemsTheSame(@NonNull Assessment oldItem, @NonNull Assessment newItem) {
-            return oldItem == newItem;  // Compare based on assessmentId
+            return oldItem == newItem;
         }
 
         @Override
         public boolean areContentsTheSame(@NonNull Assessment oldItem, @NonNull Assessment newItem) {
-            return oldItem.equals(newItem);  // Check for equality based on content
+            return oldItem.equals(newItem);
         }
     }
 

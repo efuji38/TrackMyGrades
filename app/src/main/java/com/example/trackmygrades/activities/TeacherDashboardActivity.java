@@ -69,8 +69,6 @@ public class TeacherDashboardActivity extends AppCompatActivity {
             }
         });
 
-
-
     }
 
     private void loginUser(Bundle savedInstanceState){

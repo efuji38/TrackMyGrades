@@ -101,7 +101,7 @@ public class AssignGradesActivity extends AppCompatActivity {
 
                 List<String> studentNames = new ArrayList<>();
                 for (User student : students) {
-                    studentNames.add(student.getUsername()); // Adjust based on the field you want to display
+                    studentNames.add(student.getUsername());
                 }
 
                 ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, studentNames);
@@ -112,12 +112,12 @@ public class AssignGradesActivity extends AppCompatActivity {
                 studentSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        selectedStudentId = students.get(position).getUserId(); // Set the selected student ID
+                        selectedStudentId = students.get(position).getUserId();
                     }
 
                     @Override
                     public void onNothingSelected(AdapterView<?> parent) {
-                        selectedStudentId = -1; // Reset if nothing is selected
+                        selectedStudentId = -1;
                     }
                 });
             });
@@ -127,7 +127,7 @@ public class AssignGradesActivity extends AppCompatActivity {
 
     private void loadAssessmentsIntoSpinner() {
         new Thread(() -> {
-            List<Assessment> assessments = db.assessmentDAO().getAllAssessments(); // Adjust DAO method as needed
+            List<Assessment> assessments = db.assessmentDAO().getAllAssessments();
             runOnUiThread(() -> {
                 ArrayAdapter<Assessment> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, assessments);
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

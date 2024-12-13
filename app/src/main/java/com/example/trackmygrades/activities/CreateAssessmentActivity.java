@@ -54,7 +54,7 @@ public class CreateAssessmentActivity extends AppCompatActivity {
         repository = TrackMyGradesRepository.getRepository(getApplication());
         loginUser(savedInstanceState);
 
-        dueDateTextView = binding.dueDateTextView; // Ensure this line exists
+        dueDateTextView = binding.dueDateTextView;
         dueDateTextView.setOnClickListener(v -> showDatePickerDialog());
 
         saveButton = binding.saveButton;

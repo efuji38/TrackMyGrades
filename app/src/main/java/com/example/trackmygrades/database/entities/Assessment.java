@@ -70,6 +70,6 @@ public class Assessment {
 
     @Override
     public String toString() {
-        return title; // This will display the assessment name in the spinner
+        return title;
     }
 }

@@ -11,54 +11,54 @@
         android:id="@+id/titleText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Create Assignment/Quiz"
-        android:textSize="20sp"
         android:layout_marginTop="16dp"
-        app:layout_constraintTop_toTopOf="parent"
+        android:text="@string/create_assignment_quiz"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/assessmentTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="Name of Assignment or Quiz"
         android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@+id/titleText"
+        android:hint="@string/name_of_assignment_or_quiz"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@+id/titleText" />
 
     <TextView
         android:id="@+id/dueDateTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="Enter due date"
-        android:focusable="false"
-        android:clickable="true"
-        android:text="Select Due Date"
         android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@+id/assessmentTitle"
+        android:clickable="true"
+        android:focusable="false"
+        android:hint="@string/enter_due_date"
+        android:text="@string/select_due_date"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@+id/assessmentTitle" />
 
     <Button
         android:id="@+id/saveButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Save"
         android:layout_marginTop="32dp"
-        app:layout_constraintTop_toBottomOf="@+id/dueDateTextView"
+        android:text="@string/save"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@+id/dueDateTextView" />
 
     <Button
         android:id="@+id/buttonBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Back"
         android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/saveButton"
+        android:text="Back"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@+id/saveButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

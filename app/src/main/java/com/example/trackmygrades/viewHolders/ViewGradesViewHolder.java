@@ -10,8 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.trackmygrades.R;
 import com.example.trackmygrades.database.GradeWithAssessment;
 import com.example.trackmygrades.database.TrackMyGradesDatabase;
-import com.example.trackmygrades.database.entities.Assessment;
-import com.example.trackmygrades.database.entities.Grade;
+
 
 public class ViewGradesViewHolder extends RecyclerView.ViewHolder {
 
@@ -29,27 +28,9 @@ public class ViewGradesViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void bind(GradeWithAssessment gradeWithAssessment) {
-//        new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                // Query the assessment title based on the assessmentId
-//                Assessment assessment = db.assessmentDAO().getAssessmentById(String.valueOf(grade.getAssignmentId()));
-//                String assessmentTitle = (assessment != null) ? assessment.getTitle() : "Unknown Title";
-//
-//                // Set the assessment title on the main thread
-//                assessmentTitleTextView.post(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        assessmentTitleTextView.setText(assessmentTitle);
-//                        gradeTextView.setText(String.valueOf(grade.getGrade()));  // Assuming grade is a number
-//                        commentTextView.setText(grade.getComment());
-//                    }
-//                });
-//            }
-//        }).start();
         String assessmentTitle = (gradeWithAssessment != null) ? gradeWithAssessment.assessment.getTitle() : "Unknown Title";
         assessmentTitleTextView.setText(assessmentTitle);
-        gradeTextView.setText(String.valueOf(gradeWithAssessment.grade.getGrade()));  // Assuming grade is a number
+        gradeTextView.setText(String.valueOf(gradeWithAssessment.grade.getGrade()));
         commentTextView.setText(gradeWithAssessment.grade.getComment());
     }
 
